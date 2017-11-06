@@ -1,17 +1,3 @@
-students = [
-  {name: "Laura Palmer", cohort: :november},
-  {name: "Bobby Briggs", cohort: :november},
-  {name: "Dr Lawrence Jacoby", cohort: :november},
-  {name: "One-eyed Jack", cohort: :november},
-  {name: "Dale Cooper", cohort: :november},
-  {name: "Sherriff Harry S Truman", cohort: :november},
-  {name: "Leland Palmer", cohort: :november},
-  {name: "Audrey Horne", cohort: :november},
-  {name: "Shelly Johnson", cohort: :november},
-  {name: "Log Lady", cohort: :november},
-  {name: "Nadine Hurley", cohort: :november}
-]
-
 def print_header
   puts "The students of Twin Peaks Academy"
   puts "--------------"
@@ -26,6 +12,21 @@ end
 def print_footer(students)
   puts "Overall, we have #{students.count} great students."
 end
+
+def input_students
+  puts "Please enter the names of the students."
+  puts "To finish, just hit return twice."
+  name = gets.chomp
+  students = []
+  while !name.empty? do
+    students << {name: name, cohort: :november}
+    puts "Now we have #{students.count} students"
+    name = gets.chomp
+  end
+  students
+end
+
+students = input_students
 
 print_header
 print_array(students)
