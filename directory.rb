@@ -1,18 +1,21 @@
-# first we print the list of students
-student_count = 11
+students = [
+  "Laura Palmer",
+  "Bobby Briggs",
+  "Dr Lawrence Jacoby",
+  "One-eyed Jack",
+  "Dale Cooper",
+  "Sherriff Harry S Truman",
+  "Leland Palmer",
+  "Audrey Horne",
+  "Shelly Johnson",
+  "Log Lady",
+  "Nadine Hurley"
+]
 
 puts "The students of Twin Peaks Academy"
 puts "--------------"
-puts "Laura Palmer"
-puts "Bobby Briggs"
-puts "Dr Lawrence Jacoby"
-puts "One-eyed Jack"
-puts "Dale Cooper"
-puts "Sherriff Harry S Truman"
-puts "Leland Palmer"
-puts "Audrey Horne"
-puts "Shelly Johnson"
-puts "Log Lady"
-puts "Nadine Hurley"
-# finally we print the total number of students
-print "Overall, we have #{student_count} great students."
+students.each do |student|
+  puts student
+end
+
+print "Overall, we have #{students.count} great students."
