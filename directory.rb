@@ -1,15 +1,15 @@
 students = [
-  "Laura Palmer",
-  "Bobby Briggs",
-  "Dr Lawrence Jacoby",
-  "One-eyed Jack",
-  "Dale Cooper",
-  "Sherriff Harry S Truman",
-  "Leland Palmer",
-  "Audrey Horne",
-  "Shelly Johnson",
-  "Log Lady",
-  "Nadine Hurley"
+  {name: "Laura Palmer", cohort: :november},
+  {name: "Bobby Briggs", cohort: :november},
+  {name: "Dr Lawrence Jacoby", cohort: :november},
+  {name: "One-eyed Jack", cohort: :november},
+  {name: "Dale Cooper", cohort: :november},
+  {name: "Sherriff Harry S Truman", cohort: :november},
+  {name: "Leland Palmer", cohort: :november},
+  {name: "Audrey Horne", cohort: :november},
+  {name: "Shelly Johnson", cohort: :november},
+  {name: "Log Lady", cohort: :november},
+  {name: "Nadine Hurley", cohort: :november}
 ]
 
 def print_header
@@ -17,16 +17,16 @@ def print_header
   puts "--------------"
 end
 
-def print_names(names)
-  names.each do |name|
-    puts name
+def print_array(students)
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
-def print_footer(names)
-  puts "Overall, we have #{names.count} great students."
+def print_footer(students)
+  puts "Overall, we have #{students.count} great students."
 end
 
 print_header
-print_names(students)
+print_array(students)
 print_footer(students)
