@@ -4,8 +4,10 @@ def print_header
 end
 
 def print_array(students)
-  students.each_with_index do |student, index|
-    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+  students.each_with_index.select do |student, index|
+    if student[:name].start_with?("A")
+      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    end
   end
 end
 
