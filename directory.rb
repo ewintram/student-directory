@@ -1,26 +1,36 @@
+require 'date'
+
 def print_header
-  puts "The students of Twin Peaks Academy".center(50)
-  puts "--------------".center(50)
+  puts "The students of Twin Peaks Academy"
+  puts "--------------"
 end
 
 def print_array(students)
   students.each do |student|
-      puts "#{student[:name]} (#{student[:cohort]} cohort)".center(50)
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students.".center(50)
+  puts "Overall, we have #{students.count} great students."
 end
 
 def input_students
-  puts "Please enter the name of the student."
   puts "To finish, just hit return twice."
+  puts "Please enter the name of the student."
   name = gets.chomp
   students = []
   while !name.empty? do
-    students << {name: name, cohort: :november}
+    puts "Please enter the cohort of the student."
+    cohort = gets.chomp.to_sym
+    cohort = "November" if cohort.empty?
+    if Date::MONTHNAMES.include?(cohort) == false
+      puts "Please check your spelling and try again"
+      cohort = gets.chomp.to_sym
+    end
+    students << {name: name, cohort: cohort}
     puts "Now we have #{students.count} students"
+    puts "Please enter the name of the student."
     name = gets.chomp
   end
   students
