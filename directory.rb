@@ -5,9 +5,14 @@ def print_header
   puts "--------------"
 end
 
-def print_array(students)
-  students.each do |student|
+def print_array_by_cohort(students)
+  cohorts = students.sort_by do |student|
+      student[:cohort]
+  end
+  cohorts.select do |student|
+    if student[:cohort] == :January
       puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
   end
 end
 
@@ -39,5 +44,5 @@ end
 students = input_students
 
 print_header
-print_array(students)
+print_array_by_cohort(students)
 print_footer(students)
