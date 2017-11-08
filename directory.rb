@@ -22,13 +22,13 @@ def input_students
   students = []
   while !name.empty? do
     puts "Please enter the cohort of the student."
-    cohort = gets.chomp.to_sym
+    cohort = gets.chomp
     cohort = "November" if cohort.empty?
-    if Date::MONTHNAMES.include?(cohort) == false
+    while Date::MONTHNAMES.include?(cohort) == false
       puts "Please check your spelling and try again"
-      cohort = gets.chomp.to_sym
+      cohort = gets.chomp
     end
-    students << {name: name, cohort: cohort}
+    students << {name: name, cohort: cohort.to_sym}
     puts "Now we have #{students.count} students"
     puts "Please enter the name of the student."
     name = gets.chomp
