@@ -17,7 +17,11 @@ def print_array_by_cohort(students)
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students."
+  if students.count == 1
+    puts "Overall, we have 1 great student."
+  else
+    puts "Overall, we have #{students.count} great students."
+  end
 end
 
 def input_students
