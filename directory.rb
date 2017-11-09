@@ -27,15 +27,15 @@ end
 def input_students
   puts "To finish, just hit return twice."
   puts "Please enter the name of the student."
-  name = gets.chomp
+  name = gets.delete("\n")
   students = []
   while !name.empty? do
     puts "Please enter the cohort of the student."
-    cohort = gets.chomp
+    cohort = gets.delete("\n")
     cohort = "November" if cohort.empty?
     while Date::MONTHNAMES.include?(cohort) == false
       puts "Please check your spelling and try again"
-      cohort = gets.chomp
+      cohort = gets.delete("\n")
     end
     students << {name: name, cohort: cohort.to_sym}
     if students.count == 1
@@ -44,7 +44,7 @@ def input_students
       puts "Now we have #{students.count} students"
     end
     puts "Please enter the name of the student."
-    name = gets.chomp
+    name = gets.delete("\n")
   end
   students
 end
