@@ -1,3 +1,4 @@
+require "csv"
 @students = []
 
 def print_menu
@@ -77,23 +78,19 @@ def print_footer
 end
 
 def save_students(filename)
-  File.open(filename, "w") do |file|
+  CSV.open(filename, "w") do |file|
     @students.each do |student|
-      student_data = [student[:name], student[:cohort]]
-      csv_line = student_data.join(",")
-      file.puts csv_line
+      file << [student[:name], student[:cohort]]
     end
   end
   puts "#{@students.count} students saved to #{filename}"
 end
 
 def load_students(filename)
-  File.open(filename, "r") do |file|
-    file.readlines.each do |line|
-      @name, @cohort = line.chomp.split(",")
-      @cohort.to_sym
-      populate_student_list
-    end
+  CSV.foreach(filename) do |line|
+    @name, @cohort = line[0], line[1]
+    @cohort.to_sym
+    populate_student_list
   end
   puts "#{@students.count} students loaded from #{filename}"
 end
