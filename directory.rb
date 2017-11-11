@@ -106,5 +106,9 @@ def try_load_students
   end
 end
 
+def print_own_src_code
+  puts File.read(__FILE__)
+end
+
 try_load_students
 interactive_menu
