@@ -3,8 +3,8 @@
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the list to chosen file"
+  puts "4. Load the list from chosen file"
   puts "9. Exit"
 end
 
@@ -18,19 +18,16 @@ end
 def process(selection)
   case selection
     when "1"
-      puts "You have chosen to add a new student."
       input_students
     when "2"
-      puts "Showing all students."
       show_students
     when "3"
-      puts "All students saved."
-      save_students
+      puts "Type your file name"
+      save_students(STDIN.gets.chomp)
     when "4"
-      puts "Loading all students from students.csv."
-      load_students("students.csv")
+      puts "Type your file name"
+      load_students(STDIN.gets.chomp)
     when "9"
-      puts "Exiting."
       exit
     else
       puts "I don't know what you meant, try again."
@@ -79,14 +76,15 @@ def print_footer
   end
 end
 
-def save_students
-  file = File.open("students.csv", "w")
+def save_students(filename)
+  file = File.open(filename, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
   file.close
+  puts "#{@students.count} students saved to #{filename}"
 end
 
 def load_students(filename)
@@ -97,16 +95,14 @@ def load_students(filename)
   populate_student_list
   end
   file.close
+  puts "#{@students.count} students loaded from #{filename}"
 end
 
 def try_load_students
   filename = ARGV.first
-  if filename.nil?
-    filename = "students.csv"
-  end
+  return if filename.nil?
   if File.exists?(filename)
     load_students(filename)
-    puts "Loaded #{@students.count} from #{filename}"
   else
     puts "Sorry, #{filename} doesn't exist."
     exit
