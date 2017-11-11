@@ -18,14 +18,19 @@ end
 def process(selection)
   case selection
     when "1"
+      puts "You have chosen to add a new student."
       input_students
     when "2"
+      puts "Showing all students."
       show_students
     when "3"
+      puts "All students saved."
       save_students
     when "4"
-      load_students
+      puts "Loading all students from students.csv."
+      load_students("students.csv")
     when "9"
+      puts "Exiting."
       exit
     else
       puts "I don't know what you meant, try again."
@@ -84,7 +89,7 @@ def save_students
   file.close
 end
 
-def load_students(filename)#(filename = "students.csv")
+def load_students(filename)
   file = File.open(filename, "r")
   file.readlines.each do |line|
   @name, @cohort = line.chomp.split(",")
